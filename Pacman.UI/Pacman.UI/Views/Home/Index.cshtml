@@ -1,0 +1,58 @@
+﻿@using Pacman.Simulator
+@model Pacman 
+<!-- Second Grid: Commands -->
+    <form action="/#work" method="post">
+        <div class="w3-row">
+            <div class="w3-half w3-dark-grey w3-center" style="min-height:800px" id="work">
+                <div class="w3-padding-64">
+                    <h2>Place Pacman</h2>
+
+                </div>
+                <div class="w3-row">
+                    <div class="w3-half">
+
+                        <p>
+                            <label>Enter Position X: </label>
+                            @Html.DropDownListFor(model => model.X, Enumerable.Range(0, 5).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+
+                        </p>
+                    </div>
+                    <div class="w3-half">
+                        <p>
+                            <label>Enter Position Y: </label>
+                            
+                            @Html.DropDownListFor(m => m.Y, Enumerable.Range(0, 5).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+                        </p>
+                    </div>
+                </div>
+
+                <p>
+                    <label>Enter Facing: </label>
+                    @Html.DropDownListFor(m => m.direction,
+                            new SelectList(Enum.GetValues(typeof(Direction))))
+                </p>
+                <br />
+                <p>
+                    <input value="PLACE" class="w3-button w3-black w3-center" type="submit" name="pacmanAction"/>
+                </p>
+            </div>
+            <div class="w3-half w3-light-grey w3-container" style="min-height:800px">
+                <div class="w3-padding-64 w3-center">
+                    <h2>Choose Pacman movement with the following buttons</h2>
+                    <br />
+                    <div class="w3-container w3-responsive">
+
+                        <p>
+                            <input value="MOVE" class="w3-button w3-black w3-center" type="submit" name="pacmanAction" />
+                            <input value="LEFT" class="w3-button w3-black w3-center" type="submit" name="pacmanAction" />
+                            <input value="RIGHT" class="w3-button w3-black w3-center" type="submit" name="pacmanAction" />
+                        </p>
+                    </div>
+                </div>
+                @if(Model != null)
+                { 
+                        <h3>@Model.X.ToString()  @Model.Y.ToString()  @Model.direction.ToString()</h3>
+                }
+            </div>
+        </div>
+        </form>
